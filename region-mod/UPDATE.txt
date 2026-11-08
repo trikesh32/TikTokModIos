@@ -1,0 +1,53 @@
+TikTokModIos 1.1.0 — AltStore Classic beta
+
+Download the IPA from the GitHub release or add the beta source URL documented
+in the repository README. This is an AltStore Classic source, not AltStore PAL.
+The Classic signing adaptation has passed host tests; device installation is
+still awaiting confirmation. The earlier local-signing 1.0.2 was device-tested.
+
+Build the tweak once per mod version (Mac, command-line tools, iPhoneOS SDK):
+  IOS_SDK_PATH=/absolute/path/iPhoneOS.sdk ./tiktok-mod.command build
+
+With a locally acquired, unmodified decrypted thin ARM64 TikTok IPA:
+  ./tiktok-mod.command inspect /absolute/path/TikTok.decrypted.ipa
+  ./tiktok-mod.command pack /absolute/path/TikTok.decrypted.ipa \
+    --altstore --distribution-build 476038.1100 \
+    --output /absolute/path/TikTokModIos.ipa
+For a new client, also pass --allow-untested after reviewing the report. Missing
+or changed required methods stop packaging even with this flag.
+
+Inside an extracted standalone tweak kit, use `python3 tweak.py` instead of
+`./tiktok-mod.command`. Packaging needs Python 3.11+ and codesign on macOS, but
+no SDK. The kit includes no TikTok app, certificate, profile or account data.
+It is not a jailbreak DEB. AltStore installs a complete IPA, not a bare dylib.
+
+Generate a candidate source JSON from the verified IPA:
+  python3 region-mod/scripts/source.py \
+    --ipa /absolute/path/TikTokModIos.ipa \
+    --download-url https://example.org/TikTokModIos.ipa \
+    --icon-url https://example.org/icon.png --date 2026-11-08 \
+    --output /absolute/path/source-candidate.json
+Use --previous old-source.json to retain previous versions. Duplicate version/
+build pairs are rejected. Upload the IPA before publishing a matching source.
+The generator verifies the IPA hash and uses its exact size, versions and declared
+permissions. --distribution-build must change when releasing a new mod on the
+same TikTok version; it changes CFBundleVersion, not CFBundleShortVersionString.
+
+Classic supplies the installing user's signature and effective Keychain groups.
+The module validates those entitlements, supports Classic's old/new bundle ID
+formats, and maps TikTok's known Keychain groups to a mod-specific namespace.
+A different signer/team can mean a separate login/session. Existing local-signer
+metadata remains supported in a separately packaged local-signer build.
+
+The checked baseline is TikTok 47.6.0 / 476038. Static checks cover 39 selected
+methods in MusicallyCore, not every method, category override, Swift/C++ path or
+server decision. A matching ABI is only a candidate for a phone test.
+Input downloading/decryption is not implemented here. An encrypted App Store
+IPA is not suitable. App extensions are removed to avoid extra extension App IDs.
+
+Before promoting a beta: check launch, persistent native menu, login, a fresh
+feed video, the same chat video without VPN, likes refresh, and region after
+restart. Keep the previous working release available for rollback.
+
+Metadata reader reference:
+https://github.com/apple-oss-distributions/dyld/blob/main/include/mach-o/fixup-chains.h

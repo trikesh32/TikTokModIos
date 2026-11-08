@@ -1,0 +1,243 @@
+{
+  "baseline": {
+    "version": "47.6.0",
+    "build": "476038",
+    "core_sha256": "d1845b0b8d440646e8f6936fc49dceb3ce467e296af34e380b47a71a7d50c204"
+  },
+  "required_methods": [
+    {
+      "class": "AWEAPMManager",
+      "kind": "+",
+      "selector": "signInfo",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "AWEBaseListSectionViewModel",
+      "kind": "-",
+      "selector": "insertModel:atIndex:animated:",
+      "types": "v36@0:8@16q24B32"
+    },
+    {
+      "class": "AWEBaseListSectionViewModel",
+      "kind": "-",
+      "selector": "modelsArray",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "AWEBaseListSectionViewModel",
+      "kind": "-",
+      "selector": "replaceByModels:",
+      "types": "v24@0:8@16"
+    },
+    {
+      "class": "AWEBaseListSectionViewModel",
+      "kind": "-",
+      "selector": "replaceByModels:animated:sync:completion:",
+      "types": "v40@0:8@16B24B28@?32"
+    },
+    {
+      "class": "AWEBaseListSectionViewModel",
+      "kind": "-",
+      "selector": "setModelsArray:",
+      "types": "v24@0:8@16"
+    },
+    {
+      "class": "AWEBaseListSectionViewModel",
+      "kind": "-",
+      "selector": "updateByModels:animated:sync:",
+      "types": "v32@0:8@16B24B28"
+    },
+    {
+      "class": "AWENetworkCommonParamNonSensitive",
+      "kind": "-",
+      "selector": "buildCommonParamsOptimizedV2",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "AWENetworkCommonParamNonSensitive",
+      "kind": "-",
+      "selector": "buildConsistentCommonParams",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "AWENetworkCommonParamUtilites",
+      "kind": "-",
+      "selector": "buildCommonParamsOptimizedV2",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "AWENetworkCommonParamUtilites",
+      "kind": "-",
+      "selector": "buildConsistentCommonParams",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "AWESettingItemModel",
+      "kind": "-",
+      "selector": "identifier",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "AWESettingItemModel",
+      "kind": "-",
+      "selector": "initWithIdentifier:",
+      "types": "@24@0:8@16"
+    },
+    {
+      "class": "AWESettingItemModel",
+      "kind": "-",
+      "selector": "setDetail:",
+      "types": "v24@0:8@16"
+    },
+    {
+      "class": "AWESettingItemModel",
+      "kind": "-",
+      "selector": "setIconImage:",
+      "types": "v24@0:8@16"
+    },
+    {
+      "class": "AWESettingItemModel",
+      "kind": "-",
+      "selector": "setTitle:",
+      "types": "v24@0:8@16"
+    },
+    {
+      "class": "AWESettingItemModel",
+      "kind": "-",
+      "selector": "setType:",
+      "types": "v24@0:8q16"
+    },
+    {
+      "class": "AWESettingsNormalSectionViewModel",
+      "kind": "-",
+      "selector": "context",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "AWESettingsNormalSectionViewModel",
+      "kind": "-",
+      "selector": "sectionIdentifier",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "AWESettingsNormalSectionViewModel",
+      "kind": "-",
+      "selector": "viewDidLoad",
+      "types": "v16@0:8"
+    },
+    {
+      "class": "AWESettingsNormalSectionViewModel",
+      "kind": "-",
+      "selector": "viewWillAppear",
+      "types": "v16@0:8"
+    },
+    {
+      "class": "GULAppEnvironmentUtil",
+      "kind": "+",
+      "selector": "isAppStoreReceiptSandbox",
+      "types": "B16@0:8"
+    },
+    {
+      "class": "GULAppEnvironmentUtil",
+      "kind": "+",
+      "selector": "isFromAppStore",
+      "types": "B16@0:8"
+    },
+    {
+      "class": "TIKTOKRegionManager",
+      "kind": "+",
+      "selector": "carrierRegion",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "TIKTOKRegionManager",
+      "kind": "+",
+      "selector": "currentRegionV2",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "TIKTOKRegionManager",
+      "kind": "+",
+      "selector": "mccmnc",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "TIKTOKRegionManager",
+      "kind": "+",
+      "selector": "region",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "TIKTOKRegionManager",
+      "kind": "+",
+      "selector": "storeRegion",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "TIKTOKRegionManager",
+      "kind": "+",
+      "selector": "systemRegion",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "TTKSettingsBaseCellPlugin",
+      "kind": "-",
+      "selector": "didSelectItemAtIndex:",
+      "types": "v24@0:8q16"
+    },
+    {
+      "class": "TTKSettingsBaseCellPlugin",
+      "kind": "-",
+      "selector": "initWithPluginContext:",
+      "types": "@24@0:8@16"
+    },
+    {
+      "class": "TTKSettingsBaseCellPlugin",
+      "kind": "-",
+      "selector": "itemModel",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "TTKSettingsBaseCellPlugin",
+      "kind": "-",
+      "selector": "setItemModel:",
+      "types": "v24@0:8@16"
+    },
+    {
+      "class": "TTKStoreRegionModel",
+      "kind": "-",
+      "selector": "storeRegion",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "TikTokRegionNetworkProvider",
+      "kind": "-",
+      "selector": "getWithPath:query:params:completion:",
+      "types": "v48@0:8@16@24@32@?40"
+    },
+    {
+      "class": "TikTokRegionNetworkProvider",
+      "kind": "-",
+      "selector": "postWithPath:query:params:completion:",
+      "types": "v48@0:8@16@24@32@?40"
+    },
+    {
+      "class": "_TtC12PNSRegionSDK20PNSRegionServiceImpl",
+      "kind": "-",
+      "selector": "getTTNetHeaders",
+      "types": "@16@0:8"
+    },
+    {
+      "class": "_TtC12PNSRegionSDK25PNSRegionComplianceDriver",
+      "kind": "-",
+      "selector": "buildRequestFieldsWithScene:",
+      "types": "@24@0:8q16"
+    },
+    {
+      "class": "_TtC12PNSRegionSDK25PNSRegionComplianceDriver",
+      "kind": "-",
+      "selector": "handleResponseWithResponse:",
+      "types": "v24@0:8@16"
+    }
+  ]
+}

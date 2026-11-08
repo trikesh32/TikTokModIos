@@ -1,0 +1,17 @@
+private/
+tools/
+dist/
+build/
+__pycache__/
+*.pyc
+*.ipa
+*.dylib
+*.mobileprovision
+*.p12
+*.pfx
+*.pem
+*.key
+*.log
+.DS_Store
+SC_Info/
+iTunesMetadata.plist

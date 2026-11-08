@@ -1,0 +1,51 @@
+{
+  "name": "TikTokModIos",
+  "identifier": "io.github.trikesh32.tiktokmodios",
+  "subtitle": "TikTok Region for AltStore Classic",
+  "website": "https://github.com/trikesh32/TikTokModIos",
+  "iconURL": "https://raw.githubusercontent.com/trikesh32/TikTokModIos/main/altstore/icon.png",
+  "tintColor": "#167D8D",
+  "apps": [
+    {
+      "name": "TikTok Mod",
+      "bundleIdentifier": "com.zhiliaoapp.musically",
+      "developerName": "TikTokModIos contributors (independent modification)",
+      "localizedDescription": "Unofficial region modification. CA, FR, DE, GB, US and KZ. Open Settings and privacy → Настройки мода. Restart after changing region. AltStore installation is currently experimental; not affiliated with TikTok.",
+      "iconURL": "https://raw.githubusercontent.com/trikesh32/TikTokModIos/main/altstore/icon.png",
+      "category": "social",
+      "versions": [
+        {
+          "version": "47.6.0",
+          "buildVersion": "476038.1100",
+          "marketingVersion": "47.6.0 · Mod 1.1.0 beta",
+          "date": "2026-11-08",
+          "downloadURL": "https://github.com/trikesh32/TikTokModIos/releases/download/v1.1.0-beta.1/TikTokModIos-47.6.0-1.1.0-beta.1.ipa",
+          "size": 481846055,
+          "minOSVersion": "15.0",
+          "localizedDescription": "AltStore Classic test release. Region selection and native settings. Installation through Classic still needs device confirmation."
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [
+          "keychain-access-groups"
+        ],
+        "privacy": {
+          "NSFaceIDUsageDescription": "We'll use this to unlock features that require added security.",
+          "NSContactsUsageDescription": "Sync your contacts to easily find people you know on TikTok. Your contacts will only be used to help you connect with friends.",
+          "NSPhotoLibraryUsageDescription": "To upload from or download to your device, allow access to your photos in your phone settings.",
+          "NSUserTrackingUsageDescription": "This allows TikTok to provide you with a better ads experience.",
+          "NSBluetoothAlwaysUsageDescription": "This will allow \"TikTok\" to find and connect to Bluetooth accessories. This app may also use Bluetooth to connect with nearby devices.",
+          "NSCameraUsageDescription": "You'll be able to record video.",
+          "NSPhotoLibraryAddUsageDescription": "To upload from or download to your device, allow access to your photos in your phone settings.",
+          "NSMicrophoneUsageDescription": "To record audio, allow us to access your Microphone.",
+          "NSAppleMusicUsageDescription": "To select sound from your library, allow us to access your Apple Music.",
+          "NSBluetoothPeripheralUsageDescription": "This will allow \"TikTok\" to find and connect to Bluetooth accessories. This app may also use Bluetooth to connect with nearby devices.",
+          "NSCalendarsUsageDescription": "Add events to your device calendar to get reminders when events start.",
+          "NSLocalNetworkUsageDescription": "The TikTok app will be able to discover and connect with devices that have the TikTok app installed for camera and screen sharing.",
+          "NSLocationWhenInUseUsageDescription": "If location services are enabled, TikTok will collect, store and use your device's approximate location to improve your experience."
+        }
+      }
+    }
+  ],
+  "news": []
+}
