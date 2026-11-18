@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #ifdef TT_REGION_AGGRESSIVE
-#define TRC_VERSION @"1.1.0"
+#define TRC_VERSION @"1.1.2"
 #elif defined(TT_REGION_REQUESTS)
 #define TRC_VERSION @"0.3.4"
 #elif defined(TT_REGION_DIAGNOSTICS)
@@ -11,6 +11,7 @@
 
 BOOL TRCInstallGetter(Class cls, SEL selector, NSString *value);
 void TRCStart(void);
+void TRCSetRuntimeEnvironment(NSString *environment);
 void TRCInstallHooks(void);
 BOOL TRCEnabled(void);
 BOOL TRCSavedEnabled(void);

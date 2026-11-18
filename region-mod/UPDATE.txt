@@ -1,9 +1,13 @@
-TikTokModIos 1.1.0 — AltStore Classic beta
+TikTokModIos 1.1.2 — AltStore Classic and LiveContainer
 
-Download the IPA from the GitHub release or add the beta source URL documented
-in the repository README. This is an AltStore Classic source, not AltStore PAL.
-The Classic signing adaptation has passed host tests; device installation is
-still awaiting confirmation. The earlier local-signing 1.0.2 was device-tested.
+The same IPA and source support AltStore Classic and LiveContainer + SideStore.
+In LiveContainer, add the source to LiveContainer Sources and install the guest
+there, not as a separate SideStore app. Update the existing guest without deleting
+its data container. LiveContainer operation was confirmed on an iPhone; the exact
+1.1.2 standalone Classic installation still needs a device test. This is not PAL.
+
+The guest bootstrap delegates identity and Keychain to LiveContainer. Standalone
+Classic entitlement checks remain unchanged. Diagnostics include runtime_environment.
 
 Build the tweak once per mod version (Mac, command-line tools, iPhoneOS SDK):
   IOS_SDK_PATH=/absolute/path/iPhoneOS.sdk ./tiktok-mod.command build
@@ -11,7 +15,7 @@ Build the tweak once per mod version (Mac, command-line tools, iPhoneOS SDK):
 With a locally acquired, unmodified decrypted thin ARM64 TikTok IPA:
   ./tiktok-mod.command inspect /absolute/path/TikTok.decrypted.ipa
   ./tiktok-mod.command pack /absolute/path/TikTok.decrypted.ipa \
-    --altstore --distribution-build 476038.1100 \
+    --altstore --distribution-build 476038.1102 \
     --output /absolute/path/TikTokModIos.ipa
 For a new client, also pass --allow-untested after reviewing the report. Missing
 or changed required methods stop packaging even with this flag.
@@ -25,7 +29,7 @@ Generate a candidate source JSON from the verified IPA:
   python3 region-mod/scripts/source.py \
     --ipa /absolute/path/TikTokModIos.ipa \
     --download-url https://example.org/TikTokModIos.ipa \
-    --icon-url https://example.org/icon.png --date 2026-11-08 \
+    --icon-url https://example.org/icon.png --date 2026-11-18 \
     --output /absolute/path/source-candidate.json
 Use --previous old-source.json to retain previous versions. Duplicate version/
 build pairs are rejected. Upload the IPA before publishing a matching source.

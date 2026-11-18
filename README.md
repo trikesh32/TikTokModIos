@@ -3,11 +3,41 @@
 Мод TikTok для iOS с выбором региона и установкой через **AltStore Classic**.
 Независимый проект, не связанный с TikTok / ByteDance.
 
+## Релиз 1.1.2
+
+Один IPA поддерживает отдельную установку через AltStore Classic и запуск внутри
+LiveContainer, установленного вместе с SideStore. В LiveContainer подтверждены
+работа мода и меню на iPhone. Отдельная установка именно 1.1.2 через Classic пока
+не проверена на устройстве; её прежний путь подписи сохранён и покрыт тестами.
+
+В 1.1.0 библиотека присутствовала, но проверка подписи отдельного приложения
+останавливала мод внутри контейнера. 1.1.2 распознаёт гостевой запуск, включает
+регион/PNS/меню и оставляет Keychain и Bundle ID самому LiveContainer.
+В диагностике этот режим обозначен `runtime_environment: livecontainer`.
+
+## Установка через SideStore + LiveContainer
+
+1. Установите и настройте [LiveContainer + SideStore](https://livecontainer.github.io/docs/installation/lc_sidestore),
+   импортируйте сертификат из встроенного SideStore и завершите настройку JIT-less.
+2. В **Sources самого LiveContainer** добавьте источник:
+
+   ```text
+   https://raw.githubusercontent.com/trikesh32/TikTokModIos/main/altstore/source.json
+   ```
+
+3. Установите **TikTok Mod 1.1.2** в контейнер. Если TikTok уже есть, обновите его,
+   сохранив существующий контейнер данных; удалять приложение не требуется.
+4. Откройте **Профиль → ☰ → Настройки и конфиденциальность → Настройки мода**.
+   После смены региона полностью перезапустите гостевое приложение.
+
+Можно также скачать IPA из [релиза](https://github.com/trikesh32/TikTokModIos/releases/latest)
+и импортировать его кнопкой **+** в LiveContainer. SideStore здесь подписывает и
+обновляет контейнер; сам TikTok устанавливается внутри LiveContainer.
+
 ## Установка через AltStore Classic
 
-**1.1.0 — тестовая сборка.** Подготовка подписи Classic проверена тестами,
-но установка и вход через сам AltStore ещё требуют подтверждения на iPhone.
-Предыдущая 1.0.2 была проверена с отдельным локальным установщиком.
+Используйте тот же источник и IPA. Подготовка подписи Classic проверена тестами;
+установка 1.1.2 через сам AltStore ещё требует подтверждения на iPhone.
 
 1. Установите AltStore Classic и настройте AltServer своим обычным способом.
 2. В Sources добавьте этот URL:
@@ -16,7 +46,7 @@
    https://raw.githubusercontent.com/trikesh32/TikTokModIos/main/altstore/source.json
    ```
 
-3. Найдите **TikTok Mod** и установите тестовую версию.
+3. Найдите **TikTok Mod** и установите версию 1.1.2.
 4. Откройте **Профиль → ☰ → Настройки и конфиденциальность → Настройки мода**.
    Пункт расположен в секции аккаунта. После выбора страны полностью перезапустите TikTok.
 
@@ -50,7 +80,8 @@ Classic сам переподписывает IPA. В дистрибутиве �
 | TikTok | 47.6.0, исходный build 476038 |
 | iOS / архитектура | минимум iOS 15, ARM64; все версии iOS не тестировались |
 | Локальная подпись 1.0.2 | проверена на одном iPhone |
-| AltStore Classic 1.1.0 | beta, требуется проверка на устройстве |
+| LiveContainer + SideStore, мод 1.1.2 | работа мода подтверждена на iPhone |
+| AltStore Classic, мод 1.1.2 | путь подписи проверен тестами; нужен тест устройства |
 | Новые TikTok | статическая проверка 39 выбранных методов, затем ручной тест |
 
 Расширения приложения исключены: виджеты, share extension и прочие интеграции
@@ -74,7 +105,7 @@ IOS_SDK_PATH=/absolute/path/iPhoneOS.sdk ./tiktok-mod.command build
 ```bash
 ./tiktok-mod.command inspect /path/TikTok.decrypted.ipa
 ./tiktok-mod.command pack /path/TikTok.decrypted.ipa \
-  --altstore --distribution-build 476038.1100 \
+  --altstore --distribution-build 476038.1102 \
   --output /path/TikTokModIos.ipa
 ```
 

@@ -17,6 +17,11 @@
 
 static NSString *const EnabledKey = @"TRCarrierRegion.enabled.v2";
 static BOOL active;
+static NSString *runtimeEnvironment=@"standalone";
+void TRCSetRuntimeEnvironment(NSString *environment) {
+    if([environment isEqual:@"livecontainer"] || [environment isEqual:@"standalone"])
+        runtimeEnvironment=[environment copy];
+}
 static NSTimeInterval regionStarted,regionReady,uiAttached;
 void TRCUIAttached(void) {if(!uiAttached)uiAttached=NSProcessInfo.processInfo.systemUptime;}
 @interface TRCRecord : NSObject {
@@ -123,6 +128,7 @@ NSDictionary *TRCDiagnostics(void) {
         }
     }
     NSMutableDictionary *result=[@{@"mod":TRC_VERSION,@"region":TRFCountry(),@"enabled":@(active),
+        @"runtime_environment":runtimeEnvironment,
         @"enabled_after_restart":@([NSUserDefaults.standardUserDefaults boolForKey:EnabledKey]),
         @"hooks":hooks,@"region_after_restart":TRFSavedCountry(),
         @"restart_required":@(TRCSavedEnabled()!=active || ![TRFSavedCountry() isEqual:TRFCountry()])} mutableCopy];

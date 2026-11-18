@@ -1,11 +1,35 @@
 #import "SigningContext.h"
 #import <Security/Security.h>
+#import <objc/runtime.h>
+#include <string.h>
 #ifndef TAP_TESTING
 #include <dlfcn.h>
 #endif
 
 static NSDictionary *signingContext;
 static NSString *const OriginalID=@"com.zhiliaoapp.musically";
+
+BOOL TAPIsLiveContainerGuestInfo(NSDictionary *guest,NSDictionary *host) {
+    if(![guest isKindOfClass:NSDictionary.class] || ![host isKindOfClass:NSDictionary.class])return NO;
+    if(![guest[@"CFBundleIdentifier"] isEqual:OriginalID])return NO;
+    NSString *identifier=host[@"CFBundleIdentifier"];
+    if(![identifier isKindOfClass:NSString.class])return NO;
+    return [identifier isEqual:@"com.kdt.livecontainer"] || [identifier hasPrefix:@"com.kdt.livecontainer."];
+}
+
+BOOL TAPIsLiveContainerGuest(NSBundle *bundle) {
+    // LiveContainer exposes its actual host bundle through this class method.
+    // Read it before installing any identity/Keychain compatibility hooks.
+    SEL selector=NSSelectorFromString(@"lcMainBundle");
+    Method method=class_getClassMethod(NSUserDefaults.class,selector);
+    if(!method || method_getNumberOfArguments(method)!=2)return NO;
+    char *type=method_copyReturnType(method);
+    BOOL valid=type && !strcmp(type,"@");free(type);if(!valid)return NO;
+    id host=((id(*)(id,SEL))method_getImplementation(method))(NSUserDefaults.class,selector);
+    if(![host isKindOfClass:NSBundle.class] || host==bundle ||
+       [[host bundlePath] isEqual:bundle.bundlePath])return NO;
+    return TAPIsLiveContainerGuestInfo(bundle.infoDictionary,[host infoDictionary]);
+}
 
 NSDictionary *TAPResolveSigningContext(NSDictionary *info,NSDictionary *entitlements) {
     if(![info isKindOfClass:NSDictionary.class])return nil;

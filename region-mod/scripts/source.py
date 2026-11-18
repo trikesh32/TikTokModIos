@@ -1,4 +1,4 @@
-"""Generate an AltStore Classic feed from a checked, ad-hoc release IPA."""
+"""Generate an AltStore-compatible feed from a checked, ad-hoc release IPA."""
 import argparse
 import datetime
 import json
@@ -38,21 +38,21 @@ def generate(ipa, download, icon, date, existing=None):
         if info[field] != report[key]:
             raise ValueError('Version/report mismatch')
     version = {'version': info['CFBundleShortVersionString'], 'buildVersion': info['CFBundleVersion'],
-               'marketingVersion': f"{info['CFBundleShortVersionString']} · Mod {info['TTCompatibilityBuild']} beta",
+               'marketingVersion': f"{info['CFBundleShortVersionString']} · Mod {info['TTCompatibilityBuild']}",
                'date': date, 'downloadURL': https(download), 'size': ipa.stat().st_size,
                'minOSVersion': max(info.get('MinimumOSVersion', '15.0'), '15.0', key=lambda v: tuple(map(int, v.split('.')))),
-               'localizedDescription': 'AltStore Classic test release. Region selection and native settings. Installation through Classic still needs device confirmation.'}
+               'localizedDescription': 'Region selection and native settings. Supports AltStore Classic and LiveContainer + SideStore. Check the release notes for device validation.'}
     old = []
     if existing:
         old = existing['apps'][0]['versions']
         if any(v['version'] == version['version'] and v['buildVersion'] == version['buildVersion'] for v in old):
             raise ValueError('Source already contains this version/build')
     return {'name': 'TikTokModIos', 'identifier': 'io.github.trikesh32.tiktokmodios',
-            'subtitle': 'TikTok Region for AltStore Classic', 'website': 'https://github.com/trikesh32/TikTokModIos',
+            'subtitle': 'TikTok Region · AltStore / LiveContainer', 'website': 'https://github.com/trikesh32/TikTokModIos',
             'iconURL': https(icon), 'tintColor': '#167D8D',
             'apps': [{'name': 'TikTok Mod', 'bundleIdentifier': info['CFBundleIdentifier'],
                       'developerName': 'TikTokModIos contributors (independent modification)',
-                      'localizedDescription': 'Unofficial region modification. CA, FR, DE, GB, US and KZ. Open Settings and privacy → Настройки мода. Restart after changing region. AltStore installation is currently experimental; not affiliated with TikTok.',
+                      'localizedDescription': 'Unofficial region modification. CA, FR, DE, GB, US and KZ. Open Settings and privacy → Настройки мода. Restart after changing region. Install through AltStore Classic or inside LiveContainer + SideStore. Not affiliated with TikTok.',
                       'iconURL': https(icon), 'category': 'social', 'versions': [version] + old,
                       'appPermissions': report['app_permissions']}], 'news': []}
 

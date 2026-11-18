@@ -21,5 +21,15 @@ int main(void){@autoreleasepool {
     NSDictionary *local=@{@"CFBundleIdentifier":@"com.zhiliaoapp.musically.TEST",@"TTSignedBundleIdentifier":@"com.zhiliaoapp.musically.TEST",@"TTKeychainCompatPrefix":@"TEST.com.zhiliaoapp.musically.TEST"};
     assert([TAPResolveSigningContext(local,@{})[@"keychain"] isEqual:local[@"TTKeychainCompatPrefix"]]);
     assert(!TAPResolveSigningContext(@{},@{}));
+    NSDictionary *guest=@{@"CFBundleIdentifier":original};
+    assert(TAPIsLiveContainerGuestInfo(guest,@{@"CFBundleIdentifier":@"com.kdt.livecontainer.TESTTEAM01"}));
+    assert(TAPIsLiveContainerGuestInfo(guest,@{@"CFBundleIdentifier":@"com.kdt.livecontainer"}));
+    assert(!TAPIsLiveContainerGuestInfo(guest,@{@"CFBundleIdentifier":@"com.kdt.livecontainerFake"}));
+    assert(!TAPIsLiveContainerGuestInfo(guest,@{@"CFBundleIdentifier":@"com.other.host"}));
+    assert(!TAPIsLiveContainerGuestInfo(@{@"CFBundleIdentifier":@"com.other.guest"},@{@"CFBundleIdentifier":@"com.kdt.livecontainer"}));
+    assert(!TAPIsLiveContainerGuestInfo(guest,@{}));
+    assert(!TAPIsLiveContainerGuestInfo(guest,@{@"CFBundleIdentifier":@42}));
+    // Guest acceptance is separate from standalone signing; it must not relax it.
+    assert(!TAPResolveSigningContext(guest,@{}));
     puts("Signing context: Classic old/new IDs, exact grants, foreign identity rejection and local signer passed");
 }return 0;}

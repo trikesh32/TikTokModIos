@@ -51,7 +51,7 @@ def build(output=None):
                     'architecture': 'arm64', 'minimum_ios': '15.0',
                     'library_sha256': sha256(library),
                     'compatibility': json.loads((ROOT / 'compatibility/tiktok-47.6.0.json').read_text()),
-                    'installation': 'AltStore Classic (--altstore) or the existing local signer'}
+                    'installation': 'AltStore Classic (--altstore), LiveContainer guest, or the existing local signer'}
         (kit / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
         for name in ('tweak.py', 'package.py', 'compatibility.py', 'source.py'):
             shutil.copy2(ROOT / 'scripts' / name, kit / name)

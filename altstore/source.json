@@ -1,7 +1,7 @@
 {
   "name": "TikTokModIos",
   "identifier": "io.github.trikesh32.tiktokmodios",
-  "subtitle": "TikTok Region for AltStore Classic",
+  "subtitle": "TikTok Region · AltStore / LiveContainer",
   "website": "https://github.com/trikesh32/TikTokModIos",
   "iconURL": "https://raw.githubusercontent.com/trikesh32/TikTokModIos/main/altstore/icon.png",
   "tintColor": "#167D8D",
@@ -10,10 +10,20 @@
       "name": "TikTok Mod",
       "bundleIdentifier": "com.zhiliaoapp.musically",
       "developerName": "TikTokModIos contributors (independent modification)",
-      "localizedDescription": "Unofficial region modification. CA, FR, DE, GB, US and KZ. Open Settings and privacy → Настройки мода. Restart after changing region. AltStore installation is currently experimental; not affiliated with TikTok.",
+      "localizedDescription": "Unofficial region modification. CA, FR, DE, GB, US and KZ. Open Settings and privacy → Настройки мода. Restart after changing region. Install through AltStore Classic or inside LiveContainer + SideStore. Not affiliated with TikTok.",
       "iconURL": "https://raw.githubusercontent.com/trikesh32/TikTokModIos/main/altstore/icon.png",
       "category": "social",
       "versions": [
+        {
+          "version": "47.6.0",
+          "buildVersion": "476038.1102",
+          "marketingVersion": "47.6.0 · Mod 1.1.2",
+          "date": "2026-11-18",
+          "downloadURL": "https://github.com/trikesh32/TikTokModIos/releases/download/v1.1.2/TikTokModIos-47.6.0-1.1.2.ipa",
+          "size": 481846680,
+          "minOSVersion": "15.0",
+          "localizedDescription": "Fixes the missing mod menu and inactive region override in LiveContainer. Tested on iPhone with LiveContainer + SideStore. Standalone AltStore Classic signing is unchanged and host-tested; this exact release still needs a Classic device test."
+        },
         {
           "version": "47.6.0",
           "buildVersion": "476038.1100",

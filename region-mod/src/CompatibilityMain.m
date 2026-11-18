@@ -17,12 +17,17 @@ __attribute__((constructor)) static void StartCompatibility(void) {
         NSBundle *bundle=NSBundle.mainBundle;
         if (![[bundle objectForInfoDictionaryKey:@"TTCompatibilityBuild"] isEqual:TT_RELEASE_VERSION] ||
             ![[bundle objectForInfoDictionaryKey:@"TTModCompatibilityProfile"] isEqual:@"full"]) return;
-        if(!TAPInitializeSigningContext(bundle))return;
-        // Keychain validates its namespace against the real ID before getter spoofing.
-        TAPInstallKeychainObservers();
-        TAPStartBundleIdentity();
-        TAPInstallModCompatibility();
+        BOOL container=TAPIsLiveContainerGuest(bundle);
+        if(!container) {
+            if(!TAPInitializeSigningContext(bundle))return;
+            // Standalone signing checks remain strict. The container owns its
+            // guest identity and Keychain routing; do not install competing hooks.
+            TAPInstallKeychainObservers();
+            TAPStartBundleIdentity();
+            TAPInstallModCompatibility();
+        }
 #ifdef TT_REGION_COMPAT
+        TRCSetRuntimeEnvironment(container?@"livecontainer":@"standalone");
         if ([[bundle objectForInfoDictionaryKey:@"TTCarrierRegionProfile"] isEqual:@"CA"]) {
             TRCStart();
             TRCStartSettings();
@@ -31,7 +36,7 @@ __attribute__((constructor)) static void StartCompatibility(void) {
         // Match 0.2.6 for classes registered later during startup.
         for (int delay=0;delay<5;delay++)
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,delay*NSEC_PER_SEC),dispatch_get_main_queue(),^{
-                TAPInstallModCompatibility();
+                if(!container)TAPInstallModCompatibility();
 #ifdef TT_REGION_COMPAT
                 if ([[bundle objectForInfoDictionaryKey:@"TTCarrierRegionProfile"] isEqual:@"CA"]) TRCInstallHooks();
 #endif
