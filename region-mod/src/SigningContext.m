@@ -36,7 +36,10 @@ NSDictionary *TAPResolveSigningContext(NSDictionary *info,NSDictionary *entitlem
     NSString *identifier=info[@"CFBundleIdentifier"];
     if(![identifier isKindOfClass:NSString.class])return nil;
     if([info[@"TTDistribution"] isEqual:@"altstore-classic"]) {
-        if(![info[@"ALTBundleIdentifier"] isEqual:OriginalID] || ![entitlements isKindOfClass:NSDictionary.class])return nil;
+        // SideStore omits ALTBundleIdentifier. Signed identity and exact grants below
+        // are authoritative; reject a conflicting hint, but do not require it.
+        id hint=info[@"ALTBundleIdentifier"];
+        if((hint && ![hint isEqual:OriginalID]) || ![entitlements isKindOfClass:NSDictionary.class])return nil;
         NSString *team=entitlements[@"com.apple.developer.team-identifier"];
         NSString *application=entitlements[@"application-identifier"];
         NSArray *groups=entitlements[@"keychain-access-groups"];

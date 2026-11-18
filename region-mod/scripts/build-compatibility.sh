@@ -28,6 +28,10 @@ if [[ "${1:-}" == "--region" || "${1:-}" == "--region-diagnostics" || "${1:-}" =
   fi
   if [[ "$1" == "--region-aggressive" ]]; then
     region_flags+=(-DTT_REGION_AGGRESSIVE)
+    xcrun clang -DTAP_TESTING -DTT_REGION_COMPAT -DTT_REGION_AGGRESSIVE -fobjc-arc -fblocks -O2 -Wall -Wextra -Werror \
+      -I"$task_root/src" "$task_root/src/CompatibilityMain.m" "$task_root/tests/BootstrapTests.m" \
+      -framework Foundation -framework Security -o "$task_root/build/bootstrap-tests"
+    "$task_root/build/bootstrap-tests"
     region_sources+=("$task_root/src/RegionSources.m" "$task_root/src/RegionSignals.m" "$task_root/src/RegionEnvironment.m" "$task_root/src/RegionPNS.m")
     xcrun clang -DTAP_TESTING -fobjc-arc -fblocks -O2 -Wall -Wextra -Werror \
       -I"$task_root/src" "$task_root/src/RegionSources.m" "$task_root/src/RegionSignals.m" "$task_root/src/RegionEnvironment.m" "$task_root/src/RegionCompatibility.m" "$task_root/src/RegionProfile.m" \

@@ -18,6 +18,10 @@
 static NSString *const EnabledKey = @"TRCarrierRegion.enabled.v2";
 static BOOL active;
 static NSString *runtimeEnvironment=@"standalone";
+static NSString *signingCompatibility=@"unknown";
+void TRCSetSigningCompatibility(NSString *state) {
+    if([@[@"container_managed",@"validated",@"unavailable"] containsObject:state])signingCompatibility=[state copy];
+}
 void TRCSetRuntimeEnvironment(NSString *environment) {
     if([environment isEqual:@"livecontainer"] || [environment isEqual:@"standalone"])
         runtimeEnvironment=[environment copy];
@@ -128,7 +132,7 @@ NSDictionary *TRCDiagnostics(void) {
         }
     }
     NSMutableDictionary *result=[@{@"mod":TRC_VERSION,@"region":TRFCountry(),@"enabled":@(active),
-        @"runtime_environment":runtimeEnvironment,
+        @"runtime_environment":runtimeEnvironment,@"signing_compatibility":signingCompatibility,
         @"enabled_after_restart":@([NSUserDefaults.standardUserDefaults boolForKey:EnabledKey]),
         @"hooks":hooks,@"region_after_restart":TRFSavedCountry(),
         @"restart_required":@(TRCSavedEnabled()!=active || ![TRFSavedCountry() isEqual:TRFCountry()])} mutableCopy];

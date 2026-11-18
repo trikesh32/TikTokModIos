@@ -14,7 +14,14 @@ int main(void){@autoreleasepool {
         NSMutableDictionary *bad=[ent mutableCopy];bad[@"application-identifier"]=@"OTHER.app";assert(!TAPResolveSigningContext(info,bad));
         bad=[ent mutableCopy];bad[@"keychain-access-groups"]=@[prefix];assert(!TAPResolveSigningContext(info,bad));
         bad=[ent mutableCopy];bad[@"com.apple.developer.team-identifier"]=@42;assert(!TAPResolveSigningContext(info,bad));
-        bad=[info mutableCopy];[bad removeObjectForKey:@"ALTBundleIdentifier"];assert(!TAPResolveSigningContext(bad,ent));
+        bad=[info mutableCopy];[bad removeObjectForKey:@"ALTBundleIdentifier"];
+        assert([TAPResolveSigningContext(bad,ent)[@"keychain"] isEqual:prefix]);
+        NSMutableDictionary *badEnt=[ent mutableCopy];badEnt[@"keychain-access-groups"]=@[prefix];
+        assert(!TAPResolveSigningContext(bad,badEnt));
+        badEnt=[ent mutableCopy];badEnt[@"application-identifier"]=@"OTHER.app";
+        assert(!TAPResolveSigningContext(bad,badEnt));
+        bad[@"ALTBundleIdentifier"]=@"com.other.app";assert(!TAPResolveSigningContext(bad,ent));
+        bad[@"ALTBundleIdentifier"]=@42;assert(!TAPResolveSigningContext(bad,ent));
         bad=[info mutableCopy];bad[@"CFBundleIdentifier"]=original;assert(!TAPResolveSigningContext(bad,ent));
         assert(!TAPResolveSigningContext(info,@{}));
     }
