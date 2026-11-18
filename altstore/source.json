@@ -1,7 +1,7 @@
 {
   "name": "TikTokModIos",
   "identifier": "io.github.trikesh32.tiktokmodios",
-  "subtitle": "TikTok Region · AltStore / LiveContainer",
+  "subtitle": "TikTok Region · AltStore / SideStore / LiveContainer",
   "website": "https://github.com/trikesh32/TikTokModIos",
   "iconURL": "https://raw.githubusercontent.com/trikesh32/TikTokModIos/main/altstore/icon.png",
   "tintColor": "#167D8D",
@@ -10,10 +10,20 @@
       "name": "TikTok Mod",
       "bundleIdentifier": "com.zhiliaoapp.musically",
       "developerName": "TikTokModIos contributors (independent modification)",
-      "localizedDescription": "Unofficial region modification. CA, FR, DE, GB, US and KZ. Open Settings and privacy → Настройки мода. Restart after changing region. Install through AltStore Classic or inside LiveContainer + SideStore. Not affiliated with TikTok.",
+      "localizedDescription": "Unofficial region modification. CA, FR, DE, GB, US and KZ. Open Settings and privacy → Настройки мода. Restart after changing region. Install directly through AltStore Classic or SideStore, or inside LiveContainer. Not affiliated with TikTok.",
       "iconURL": "https://raw.githubusercontent.com/trikesh32/TikTokModIos/main/altstore/icon.png",
       "category": "social",
       "versions": [
+        {
+          "version": "47.6.0",
+          "buildVersion": "476038.1103",
+          "marketingVersion": "47.6.0 · Mod 1.1.3",
+          "date": "2026-11-18",
+          "downloadURL": "https://github.com/trikesh32/TikTokModIos/releases/download/v1.1.3/TikTokModIos-47.6.0-1.1.3.ipa",
+          "size": 481846889,
+          "minOSVersion": "15.0",
+          "localizedDescription": "Fixes missing mod settings and inactive region override after direct SideStore installation: ALTBundleIdentifier is optional, while signed identity and all Keychain grants remain checked. Region/menu startup no longer stops when signing compatibility is unavailable. Built and regression-tested; 1.1.3 device confirmation pending. Login without VPN is not guaranteed."
+        },
         {
           "version": "47.6.0",
           "buildVersion": "476038.1102",
